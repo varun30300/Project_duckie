@@ -35,7 +35,7 @@ def duckie_response(CHAT_MODEL,human_text, retriever_tool, VERBOSE):
     request = chat_prompt.format_prompt(text=human_text).to_messages()
     result = CHAT_MODEL.invoke(request)
     human_text_classification = result.content
-
+    
     if human_text_classification == "CreateConvo" : 
         # return convoAgent(human_text, verbose)
         return ConvoAgent.convo_agent(CHAT_MODEL, human_text, retriever_tool, VERBOSE)

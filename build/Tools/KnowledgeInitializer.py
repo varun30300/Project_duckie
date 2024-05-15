@@ -3,6 +3,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
 import os
+from langchain.tools.retriever import create_retriever_tool
 
 def knowledge_initializer ():
 
@@ -49,5 +50,11 @@ def knowledge_initializer ():
 
     retriever = vector_db.as_retriever()
 
-    return retriever
+    retriever_tool = create_retriever_tool(
+    retriever,
+    "full_directory",
+    "Search for information about only using this tool.",
+)
+
+    return retriever_tool
     

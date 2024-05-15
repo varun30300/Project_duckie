@@ -1,6 +1,6 @@
 from langchain_core.prompts import ChatPromptTemplate
-from langchain.agents import create_tool_calling_agent
 from langchain.agents import AgentExecutor
+from langchain.agents import create_tool_calling_agent
 
 def convo_agent (CHAT_MODEL, human_text, retriever_tool, VERBOSE) : 
     # return ("Initialting Convo Agent")
@@ -12,11 +12,8 @@ def convo_agent (CHAT_MODEL, human_text, retriever_tool, VERBOSE) :
             ("placeholder", "{agent_scratchpad}"),
         ]
     )
-    agent = create_tool_calling_agent(CHAT_MODEL, [retriever_tool], prompt)
-    
-    if VERBOSE :  
-        agent_executor = AgentExecutor(agent=agent, tools=[retriever_tool], verbose=True)
-    else : 
-        agent_executor = AgentExecutor(agent=agent, tools=[retriever_tool], verbose=False)
+    tools = [retriever_tool]
+    agent = create_tool_calling_agent(CHAT_MODEL, tools , prompt)
+    agent_executor = AgentExecutor(agent=agent, tools=[retriever_tool], verbose=VERBOSE)
     result = agent_executor.invoke({"input": human_text})
     return result

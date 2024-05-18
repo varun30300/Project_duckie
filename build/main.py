@@ -11,16 +11,7 @@ VERBOSE = False
 # check if the database is changed, if yes, get new embedded knowledge retrieved tool 
 retriever_tool = KnowledgeInitializer.knowledge_initializer()
 
-history = [
-                {   
-                    "actor" : "human",
-                    "content" : "Hi"
-                } ,
-                {
-                    "actor" : "ai" ,
-                    "content" : "Hello ! How cam I help you ?"
-                } 
-            ]
+history = []
 
 def add_history (actor, content):
     history.append({
@@ -36,10 +27,11 @@ def on_enter_pressed(event):
     if human_text == "quit":
         root.destroy()
     else : 
-        reponse = AgentCaller.duckie_response(CHAT_MODEL, human_text, retriever_tool, VERBOSE)
-        add_history("ai", reponse['output'])
+        response = AgentCaller.duckie_response(CHAT_MODEL, human_text, retriever_tool, VERBOSE)
+        print(response)
+        add_history("ai", response['output'])
         update_display()
-        print(reponse['output'])
+        
     return "break"
 
 def clear_frame():
@@ -106,6 +98,19 @@ list_files()
 history_box = tk.Frame(root, relief="ridge") 
 history_box.grid(row=1, column=1, sticky="esw" , padx=50, pady=10)
 
+# history_frame = tk.Frame(root)
+# history_frame.grid(row=1, column=1, sticky="nsew", padx=50, pady=10)
+
+# history_canvas = tk.Canvas(history_frame)
+# history_scrollbar = ttk.Scrollbar(history_frame, orient="vertical", command=history_canvas.yview)
+# history_canvas.configure(yscrollcommand=history_scrollbar.set)
+
+# history_box = tk.Frame(history_canvas)
+# history_canvas.create_window((0, 0), window=history_box, anchor="nw")
+
+# history_canvas.pack(side="left", fill="both", expand=True)
+# history_scrollbar.pack(side="right", fill="y")
+
 update_display()
 
 # Create a Frame for the text box at the bottom right
@@ -115,6 +120,11 @@ update_display()
 # Create a Text widget for user input
 human_text_box = tk.Text(root, height=2, font=('Arial', 13))
 human_text_box.grid(row=2, column=1, sticky="ew", padx=10, pady=10)
+# history_canvas = tk.Canvas(history_box)
+# history_canvas.pack(side="left", fill="both", expand=True)
+# history_scrollbar = tk.Scrollbar(history_box, orient="vertical", command=history_canvas.yview)
+# history_scrollbar.grid(row=1, column=2, sticky="ns")
+# history_canvas.configure(yscrollcommand=history_scrollbar.set)
 
 # Set column weights to adjust the column widths
 

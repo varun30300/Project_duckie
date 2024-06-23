@@ -22,7 +22,7 @@ Project Duckie is a versatile tool designed for students to upload their study m
 - `Toolkit.ipynb`: Additional tools and utilities for the project.
 - `duckie.ipynb`: Main project notebook.
 
-### List of Unique Libraries
+### List of Libraries
 
 - **langchain_core**
   - `ChatPromptTemplate`

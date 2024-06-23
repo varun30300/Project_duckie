@@ -22,8 +22,61 @@ Project Duckie is a versatile tool designed for students to upload their study m
 - `Toolkit.ipynb`: Additional tools and utilities for the project.
 - `duckie.ipynb`: Main project notebook.
 
+### List of Unique Libraries
+
+- **langchain_core**
+  - `ChatPromptTemplate`
+
+- **langchain**
+  - `AgentExecutor`
+  - `create_tool_calling_agent`
+
+- **langchain_community**
+  - `DirectoryLoader`
+  - `vectorstores`
+    - `FAISS`
+
+- **langchain_text_splitters**
+  - `RecursiveCharacterTextSplitter`
+
+- **langchain_openai**
+  - `OpenAIEmbeddings`
+  - `ChatOpenAI`
+
+- **langchain.tools**
+  - `retriever`
+    - `create_retriever_tool`
+
+- **Agents**
+  - `ConvoAgent`
+
+- **Tools**
+  - `KnowledgeInitializer`
+
+- Other Dependencies
+  - `AgentCaller`
+  - `tkinter`
+  - `ttk`
+  - `os`
+
+
 ## Getting Started
 1. Clone the repository:
    ```sh
    git clone https://github.com/varun30300/Project_duckie.git
+   ```
+
+2. Set OPENAI API:
+   ```sh
+   setx OPENAI_API_KEY "YOUR_API_KEY"
+   ```
+
+3. Navigate to the project build directory:
+   ```sh
+   cd Project_duckie/build
+   ```
+
+4. Run the program:
+   ```python
+   python main.py
    ```
